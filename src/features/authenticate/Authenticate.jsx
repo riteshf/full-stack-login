@@ -9,16 +9,21 @@ import {
   InputLeftElement,
   chakra,
   Box,
+  Link,
   Avatar,
   FormControl,
+  FormHelperText,
   InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { loginAsync } from "./authenticate.slice";
+import { useDispatch } from "react-redux";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export const Authenticate = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,11 +32,11 @@ export const Authenticate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Login user using email, passsword
+    dispatch(loginAsync({ email, password }));
   };
 
   const google = () => {
-    /* TODO: Login Using Google */
+    window.open("http://localhost:8000/auth/google", "_self");
   };
 
   return (
@@ -90,6 +95,9 @@ export const Authenticate = () => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
+                <FormHelperText textAlign="right">
+                  <Link>forgot password?</Link>
+                </FormHelperText>
               </FormControl>
               <Button
                 borderRadius={0}

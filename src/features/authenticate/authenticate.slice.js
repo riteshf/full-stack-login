@@ -50,8 +50,6 @@ export const authenticateReducer = createSlice({
   },
 });
 
-export const {} = authenticateReducer.actions;
-
 export const selectAccessToken = (state) => state.authenticate.accessToken;
 
 export default authenticateReducer.reducer;
