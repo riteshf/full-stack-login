@@ -23,7 +23,6 @@ const authenticate = async (req, res, next) => {
     const headers = req.headers;
     // 2. get the access token from headers
     const accesstoken = headers.accesstoken;
-    console.log(headers.accesstoken);
     // 3. if access token is not present in header, then 400
     if (!(accesstoken && accesstoken.startsWith("Bearer "))) {
       return res.status(400).send("User does not have access");

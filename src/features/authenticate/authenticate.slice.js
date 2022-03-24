@@ -35,7 +35,6 @@ export const authenticateReducer = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginAsync.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.accesstoken = action.payload.token;
         localStorage.setItem("accesstoken", action.payload.token);
         state.user = action.payload.user;
