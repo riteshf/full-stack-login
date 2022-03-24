@@ -22,13 +22,14 @@ const authenticate = async (req, res, next) => {
     // 1. read the req header
     const headers = req.headers;
     // 2. get the access token from headers
-    const accessToken = headers.accessToken;
+    const accesstoken = headers.accesstoken;
+    console.log(headers.accesstoken);
     // 3. if access token is not present in header, then 400
-    if (!(accessToken && accessToken.startsWith("Bearer "))) {
+    if (!(accesstoken && accesstoken.startsWith("Bearer "))) {
       return res.status(400).send("User does not have access");
     }
     // get the user info from the token
-    token = accessToken.split(" ")[1];
+    token = accesstoken.split(" ")[1];
     try {
       // if token exists then get the user and validate the token
       user = await getUserByToken(token);

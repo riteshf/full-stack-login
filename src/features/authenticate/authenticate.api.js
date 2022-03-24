@@ -17,7 +17,7 @@ export const loginCheck = async (params) => {
       Accept: "application/json",
       "Content-Type": "application/json",
       "Access-Control-Allow-Credentials": true,
-      accessToken: params.accessToken,
+      accesstoken: `Bearer ${params.accesstoken}`,
     },
   });
   let data = await response.json();

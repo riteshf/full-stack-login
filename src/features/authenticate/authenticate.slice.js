@@ -3,7 +3,7 @@ import { login, loginCheck, logout } from "./authenticate.api";
 
 const initialState = {
   loggedInUser: {},
-  accessToken: localStorage.getItem("accessToken") || "",
+  accesstoken: localStorage.getItem("accesstoken") || "",
 };
 
 export const loginAsync = createAsyncThunk(
@@ -36,20 +36,22 @@ export const authenticateReducer = createSlice({
     builder
       .addCase(loginAsync.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.accessToken = action.payload.token;
+        state.accesstoken = action.payload.token;
+        localStorage.setItem("accesstoken", action.payload.token);
         state.user = action.payload.user;
       })
       .addCase(loginCheckAsync.fulfilled, (state, action) => {
-        state.accessToken = action.payload.token;
+        state.accesstoken = action.payload.token;
         state.user = action.payload.user;
       })
       .addCase(logoutAsync.fulfilled, (state) => {
-        state.accessToken = "";
+        state.accesstoken = "";
+        localStorage.removeItem("accesstoken");
         state.user = {};
       });
   },
 });
 
-export const selectAccessToken = (state) => state.authenticate.accessToken;
+export const selectAccessToken = (state) => state.authenticate.accesstoken;
 
 export default authenticateReducer.reducer;

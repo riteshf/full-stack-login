@@ -13,7 +13,7 @@ passport.use(
       callbackURL: "http://localhost:8000/auth/google/callback",
       passReqToCallback: true,
     },
-    async function (request, accessToken, refreshToken, profile, done) {
+    async function (request, accesstoken, refreshToken, profile, done) {
       const email = profile._json.email;
       // check if user exists
       let user = await User.findOne({ email: email });

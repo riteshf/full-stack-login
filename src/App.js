@@ -9,23 +9,23 @@ import "./App.css";
 import { loginCheckAsync } from "./features/authenticate/authenticate.slice";
 
 function App() {
-  const accessToken = useSelector((state) => state.authenticate.accessToken);
+  const accesstoken = useSelector((state) => state.authenticate.accesstoken);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (accessToken) {
+    if (accesstoken) {
       if (pathname === "/login") navigate("/");
     } else {
       navigate("/login");
     }
-  }, [pathname, navigate, accessToken]);
+  }, [pathname, navigate, accesstoken]);
   useEffect(() => {
     const getUser = () => {
-      dispatch(loginCheckAsync({ accessToken }));
+      dispatch(loginCheckAsync({ accesstoken }));
     };
     getUser();
-  }, [dispatch, accessToken]);
+  }, [dispatch, accesstoken]);
   return (
     <div className="App">
       <Routes>
